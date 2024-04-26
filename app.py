@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 
 def main():
     menu = ["Login", "Registro"]
@@ -26,8 +27,16 @@ def show_registration():
             st.error("Por favor, completa todos los campos.")
 
 def register_user(username, password):
-    with open("users.txt", "a") as file:
-        file.write(f"{username}:{password}\n")
+    def register_user(username, password):
+        # Obtener la ruta al directorio actual del script
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construir la ruta al archivo de usuarios dentro del directorio del proyecto
+        users_file_path = os.path.join(current_dir, "users.txt")
+
+        # Escribir los datos de registro en el archivo de usuarios
+        with open(users_file_path, "a") as file:
+            file.write(f"{username}:{password}\n")
 
 def show_login():
 
