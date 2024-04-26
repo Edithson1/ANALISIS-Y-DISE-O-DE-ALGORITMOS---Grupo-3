@@ -69,12 +69,15 @@ def verify_user(username, password):
     return False
 
 def show_user_account():
-    # Mostrar el nombre de usuario en la esquina superior derecha
-    st.sidebar.markdown("<h3 style='text-align: right;'>Usuario: NombreUsuario</h3>", unsafe_allow_html=True)
+    # Mostrar el nombre de usuario y las opciones dentro de la sección de inicio de sesión
+    st.write("")
+    st.write("")
+    st.write("### Opciones de sesión")
+    st.write("")
     # Opción para ver los datos del perfil del usuario
-    st.sidebar.markdown("<h5 style='text-align: right;'><a href='#'>Ver perfil</a></h5>", unsafe_allow_html=True)
+    st.write("[Ver perfil](#)")
     # Opción para cerrar sesión
-    if st.sidebar.button("Cerrar sesión", key="logout_btn"):
+    if st.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
 
