@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt 
 
 usuarios = {
     72439569: "hulk@bb",
@@ -44,7 +46,37 @@ def show_authenticated_content():
 
     if archivo is not None:
         df = download(archivo)
-        st.write(df.head(100))
+        st.header('Malla Curricular')
+        st.dataframe(df)
+
+        df = df.iloc[:-2, :]
+
+        #Grafo dirigido en NetworkX: Para saber cuál es la línea que generará un curso base
+        cursos = df[~df['Cursos'].str.contains("Asignaturas", case=False)]['Cursos'].tolist()
+        curso_selec = st.selectbox('- Seleccione el curso a visualizar', cursos)
+        st.write('Curso seleccionado:', curso_selec.capitalize())
+
+        codigo = df.loc[df["Cursos"] == curso_selec, "Código"].values[0]
+        G = nx.DiGraph()
+        G.add_node(codigo)
+        flag = False
+
+        while flag == False:
+            if not df.loc[df["Codigo_del_Requisito"] == codigo, "Código"].empty:
+                descendiente = df.loc[df["Codigo_del_Requisito"] == codigo, "Código"].values[0]
+                G.add_node(descendiente)
+                G.add_edge(codigo, descendiente)
+                codigo = descendiente
+
+            else:
+                pos = nx.spring_layout(G)  
+                fig, ax = plt.subplots(figsize=(10, 6))  
+                nx.draw(G, pos, with_labels=True, node_size=700, node_color="skyblue", font_size=10, ax=ax)  # Dibujar el grafo
+                ax.set_title(f"Grafo del curso de {curso_selec}")  
+                ax.axis('off')  
+                plt.tight_layout()  
+                st.pyplot(fig) 
+                flag = True
 
 if __name__ == "__main__":
     main()
