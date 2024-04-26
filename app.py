@@ -85,7 +85,7 @@ def show_user_account():
 
     user_name = "NOMBRE DE USUARIO"  # Aquí debes obtener el nombre de usuario actualmente logueado
     st.sidebar.write(f"### Bienvenida {user_name}")
-    file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
+    file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["", "CSV", "Excel"])
 
     if file_type:
         st.markdown("<h1 style='text-align: center;'>Subir plan curricular</h1>", unsafe_allow_html=True)
