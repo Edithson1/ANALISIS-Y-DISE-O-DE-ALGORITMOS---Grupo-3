@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 
+
 def main():
     logged_in = False  # Variable para verificar si el usuario ha iniciado sesión
     menu = ["Login", "Registro"]
@@ -17,6 +18,7 @@ def main():
     if logged_in:
         show_user_account()
 
+
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
     username = st.text_input("Nombre de usuario")
@@ -30,6 +32,7 @@ def show_registration():
         else:
             st.error("Por favor, completa todos los campos.")
 
+
 def register_user(username, password):
     # Obtener la ruta al directorio actual del script
     current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -40,6 +43,7 @@ def register_user(username, password):
     # Escribir los datos de registro en el archivo de usuarios
     with open(users_file_path, "a") as file:
         file.write(f"{username}:{password}\n")
+
 
 def show_login():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -53,6 +57,7 @@ def show_login():
             return True  # Marcar como iniciado sesión si la verificación es exitosa
         else:
             st.error("Nombre de usuario o contraseña incorrectos.")
+
 
 def verify_user(username, password):
     # Obtener la ruta al directorio actual del script
@@ -69,6 +74,7 @@ def verify_user(username, password):
                 return True
     return False
 
+
 def show_user_account():
     st.write("")
     st.write("")
@@ -82,14 +88,16 @@ def show_user_account():
     st.sidebar.write("### Subir archivo")
     file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
 
-    uploaded_file = st.sidebar.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
+    if file_type:
+        st.markdown("<h1 style='text-align: center;'>Subir archivo</h1>", unsafe_allow_html=True)
+        uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
+        if uploaded_file is not None:
+            if file_type == "CSV":
+                df = pd.read_csv(uploaded_file)
+            else:
+                df = pd.read_excel(uploaded_file)
+            st.write(df)
 
-    if uploaded_file is not None:
-        if file_type == "CSV":
-            df = pd.read_csv(uploaded_file)
-        else:
-            df = pd.read_excel(uploaded_file)
-        st.sidebar.write(df)
 
 if __name__ == "__main__":
     main()
