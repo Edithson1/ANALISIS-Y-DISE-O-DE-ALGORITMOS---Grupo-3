@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt 
-import GRAFO_CICLOS as g
+from GRAFO_CICLOS import malla_curricular
 usuarios = {
     72439569: "hulk@bb",
     42326885: "loki%=#",
@@ -18,6 +18,9 @@ def main():
         if st.button("Iniciar sesión"):
             if verify_user(username, password):
                 st.session_state.logged_in = True
+
+                malla_curricular("CursosInformatica.csv")
+
             else:
                 st.error("Nombre de usuario o contraseña incorrectos.")
     else:
@@ -50,6 +53,8 @@ def show_authenticated_content():
         st.dataframe(df)
 
         df = df.iloc[:-2, :]
+
+        df["Nombre"] = "Cursos"
 
         #Grafo dirigido en NetworkX: Para saber cuál es la línea que generará un curso base
         cursos = df[~df['Cursos'].str.contains("Asignaturas", case=False)]['Cursos'].tolist()
