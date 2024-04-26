@@ -84,11 +84,10 @@ def show_user_account():
         st.experimental_rerun()
 
     st.sidebar.write("### Bienvenida [NOMBRE DE USUARIO]")
-    st.write("Subir plan curricular")
     file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
 
     if file_type:
-        st.markdown("<h1 style='text-align: center;'>Subir archivo</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='text-align: center;'>Subir plan curricular</h1>", unsafe_allow_html=True)
         uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
         if uploaded_file is not None:
             if file_type == "CSV":
