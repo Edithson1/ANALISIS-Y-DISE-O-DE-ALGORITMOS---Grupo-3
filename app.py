@@ -9,13 +9,12 @@ def main():
     if choice == "Login":
         st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
         logged_in = show_login()
-        if logged_in:
-            show_user_account()
     elif choice == "Registro":
         st.markdown("<h1 style='text-align: center;'>Registrarse</h1>", unsafe_allow_html=True)
         show_registration()
 
-
+    if logged_in:
+        show_user_account()
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -70,8 +69,12 @@ def verify_user(username, password):
     return False
 
 def show_user_account():
-    st.sidebar.subheader("Mi Cuenta")
-    if st.sidebar.button("Cerrar sesión"):
+    # Mostrar el nombre de usuario en la esquina superior derecha
+    st.sidebar.markdown("<h3 style='text-align: right;'>Usuario: NombreUsuario</h3>", unsafe_allow_html=True)
+    # Opción para ver los datos del perfil del usuario
+    st.sidebar.markdown("<h5 style='text-align: right;'><a href='#'>Ver perfil</a></h5>", unsafe_allow_html=True)
+    # Opción para cerrar sesión
+    if st.sidebar.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
 
