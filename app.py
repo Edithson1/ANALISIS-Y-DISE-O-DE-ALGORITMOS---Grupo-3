@@ -2,15 +2,26 @@ import streamlit as st
 import os
 
 def main():
+    logged_in = False  # Variable para verificar si el usuario ha iniciado sesión
     menu = ["Login", "Registro"]
     choice = st.sidebar.selectbox("Menú", menu)
 
     if choice == "Login":
         st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
-        show_login()
+        logged_in = show_login()
     elif choice == "Registro":
         st.markdown("<h1 style='text-align: center;'>Registrarse</h1>", unsafe_allow_html=True)
         show_registration()
+
+    if logged_in:
+        # Mostrar un nuevo menú después de iniciar sesión
+        st.sidebar.subheader("Menú Después del Login")
+        new_menu = ["Opción 1", "Opción 2"]
+        new_choice = st.sidebar.selectbox("Menú", new_menu)
+        if new_choice == "Opción 1":
+            st.write("¡Has seleccionado la Opción 1!")
+        elif new_choice == "Opción 2":
+            st.write("¡Has seleccionado la Opción 2!")
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -45,6 +56,7 @@ def show_login():
     if st.button("Iniciar sesión"):
         if verify_user(username, password):
             st.success(f"Bienvenido, {username}!")
+            return True  # Marcar como iniciado sesión si la verificación es exitosa
         else:
             st.error("Nombre de usuario o contraseña incorrectos.")
 
