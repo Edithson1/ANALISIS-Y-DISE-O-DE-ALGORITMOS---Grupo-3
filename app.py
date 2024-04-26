@@ -9,12 +9,13 @@ def main():
     if choice == "Login":
         st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
         logged_in = show_login()
+        if logged_in:
+            show_user_account()
     elif choice == "Registro":
         st.markdown("<h1 style='text-align: center;'>Registrarse</h1>", unsafe_allow_html=True)
         show_registration()
 
-    if logged_in:
-        show_user_account()
+
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
