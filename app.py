@@ -54,7 +54,8 @@ def show_authenticated_content():
 
         df = df.iloc[:-2, :]
 
-        df["Nombre"] = "Cursos"
+        df = df.rename(columns={"Nombre_original": "Cursos"})
+
 
         #Grafo dirigido en NetworkX: Para saber cuál es la línea que generará un curso base
         cursos = df[~df['Cursos'].str.contains("Asignaturas", case=False)]['Cursos'].tolist()
