@@ -14,14 +14,7 @@ def main():
         show_registration()
 
     if logged_in:
-        # Mostrar un nuevo menú después de iniciar sesión
-        st.sidebar.subheader("Menú Después del Login")
-        new_menu = ["Opción 1", "Opción 2"]
-        new_choice = st.sidebar.selectbox("Menú", new_menu)
-        if new_choice == "Opción 1":
-            st.write("¡Has seleccionado la Opción 1!")
-        elif new_choice == "Opción 2":
-            st.write("¡Has seleccionado la Opción 2!")
+        show_user_account()
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -74,6 +67,12 @@ def verify_user(username, password):
             if username == stored_username and password == stored_password:
                 return True
     return False
+
+def show_user_account():
+    st.sidebar.subheader("Mi Cuenta")
+    if st.sidebar.button("Cerrar sesión"):
+        st.success("¡Sesión cerrada correctamente!")
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
