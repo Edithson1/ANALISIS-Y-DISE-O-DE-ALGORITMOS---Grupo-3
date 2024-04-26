@@ -78,14 +78,13 @@ def verify_user(username, password):
 def show_user_account():
     st.write("")
     st.write("")
-    st.write("### Opciones de sesión")
-    st.write("")
     st.write("[Ver perfil](#)")
     if st.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
 
-    st.sidebar.write("### Subir archivo")
+    st.sidebar.write("### Bienvenida [NOMBRE DE USUARIO]")
+    st.write("Subir plan curricular")
     file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
 
     if file_type:
@@ -98,6 +97,7 @@ def show_user_account():
                 df = pd.read_excel(uploaded_file)
             st.write(df)
 
+    st.button("Iniciar proceso de matrícula")
 
 if __name__ == "__main__":
     main()
