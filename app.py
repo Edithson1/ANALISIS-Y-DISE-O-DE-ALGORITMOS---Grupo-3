@@ -15,7 +15,7 @@ def main():
         show_registration()
 
     if logged_in:
-        show_user_account()
+        show_user_menu()
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -69,16 +69,7 @@ def verify_user(username, password):
                 return True
     return False
 
-def show_user_account():
-    st.write("")
-    st.write("")
-    st.write("### Opciones de sesión")
-    st.write("")
-    st.write("[Ver perfil](#)")
-    if st.button("Cerrar sesión", key="logout_btn"):
-        st.success("¡Sesión cerrada correctamente!")
-        st.experimental_rerun()
-
+def show_user_menu():
     st.write("")
     st.write("### Menú Después del Login")
     file_type = st.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
