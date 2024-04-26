@@ -4,8 +4,9 @@ import os
 
 def main():
     logged_in = False  # Variable para verificar si el usuario ha iniciado sesión
-    menu = ["Login", "Registro"]
+    menu = ["Login", "Registro", "Subir_archivo"]
     choice = st.sidebar.selectbox("Menú", menu)
+    choice_1 = st.sidebar.selectbox("Subir_archivo", menu)
 
     if choice == "Login":
         st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
@@ -15,7 +16,21 @@ def main():
         show_registration()
 
     if logged_in:
-        show_user_menu()
+        show_user_account()
+
+    if choice_1 == "Subir_archivo":
+        st.write("")
+        st.write("### Menú Después del Login")
+        file_type = st.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
+
+        uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
+
+        if uploaded_file is not None:
+            if file_type == "CSV":
+                df = pd.read_csv(uploaded_file)
+            else:
+                df = pd.read_excel(uploaded_file)
+            st.write(df)
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -69,19 +84,15 @@ def verify_user(username, password):
                 return True
     return False
 
-def show_user_menu():
+def show_user_account():
     st.write("")
-    st.write("### Menú Después del Login")
-    file_type = st.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
-
-    uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
-
-    if uploaded_file is not None:
-        if file_type == "CSV":
-            df = pd.read_csv(uploaded_file)
-        else:
-            df = pd.read_excel(uploaded_file)
-        st.write(df)
+    st.write("")
+    st.write("### Opciones de sesión")
+    st.write("")
+    st.write("[Ver perfil](#)")
+    if st.button("Cerrar sesión", key="logout_btn"):
+        st.success("¡Sesión cerrada correctamente!")
+        st.experimental_rerun()
 
 if __name__ == "__main__":
     main()
