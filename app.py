@@ -3,13 +3,13 @@ import streamlit as st
 def main():
     st.title("Registro y Login App")
 
-    menu = ["Registro", "Login"]
+    menu = ["Login", "Registro"]
     choice = st.sidebar.selectbox("Menú", menu)
 
-    if choice == "Registro":
-        show_registration()
-    elif choice == "Login":
+    if choice == "Login":
         show_login()
+    elif choice == "Registro":
+        show_registration()
 
 def show_registration():
     st.subheader("Registro")
