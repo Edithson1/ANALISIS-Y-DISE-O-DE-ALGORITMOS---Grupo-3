@@ -4,34 +4,18 @@ import os
 
 def main():
     logged_in = False  # Variable para verificar si el usuario ha iniciado sesión
-    menu = ["Login", "Registro", "Subir_archivo"]
+    menu = ["Login", "Registro"]
     choice = st.sidebar.selectbox("Menú", menu)
 
     if choice == "Login":
         st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
         logged_in = show_login()
-        subir_Archivo()
     elif choice == "Registro":
         st.markdown("<h1 style='text-align: center;'>Registrarse</h1>", unsafe_allow_html=True)
         show_registration()
 
     if logged_in:
         show_user_account()
-
-
-def subir_Archivo():
-    st.write("")
-    st.write("### Menú Después del Login")
-    file_type = st.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
-
-    uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
-
-    if uploaded_file is not None:
-        if file_type == "CSV":
-            df = pd.read_csv(uploaded_file)
-        else:
-            df = pd.read_excel(uploaded_file)
-        st.write(df)
 
 def show_registration():
     # Campos de entrada para el nombre de usuario y la contraseña
@@ -94,6 +78,18 @@ def show_user_account():
     if st.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
+
+    st.sidebar.write("### Subir archivo")
+    file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
+
+    uploaded_file = st.sidebar.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
+
+    if uploaded_file is not None:
+        if file_type == "CSV":
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+        st.sidebar.write(df)
 
 if __name__ == "__main__":
     main()
