@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import os
 
 def main():
@@ -69,14 +70,27 @@ def verify_user(username, password):
     return False
 
 def show_user_account():
-    # Mostrar el nombre de usuario y las opciones dentro de la sección de inicio de sesión
-    col1, col2 = st.columns([1, 1])
-    col2.write("[Ver perfil](#)")
-    col2.write("")
-    # Opción para cerrar sesión
-    if col1.button("Cerrar sesión", key="logout_btn"):
+    st.write("")
+    st.write("")
+    st.write("### Opciones de sesión")
+    st.write("")
+    st.write("[Ver perfil](#)")
+    if st.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
+
+    st.write("")
+    st.write("### Menú Después del Login")
+    file_type = st.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
+
+    uploaded_file = st.file_uploader("Seleccione un archivo", type=["csv", "xlsx"])
+
+    if uploaded_file is not None:
+        if file_type == "CSV":
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+        st.write(df)
 
 if __name__ == "__main__":
     main()
