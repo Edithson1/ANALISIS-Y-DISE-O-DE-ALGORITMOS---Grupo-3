@@ -70,14 +70,11 @@ def verify_user(username, password):
 
 def show_user_account():
     # Mostrar el nombre de usuario y las opciones dentro de la sección de inicio de sesión
-    st.write("")
-    st.write("")
-    st.write("### Opciones de sesión")
-    st.write("")
-    # Opción para ver los datos del perfil del usuario
-    st.write("[Ver perfil](#)")
+    col1, col2 = st.columns([1, 1])
+    col2.write("[Ver perfil](#)")
+    col2.write("")
     # Opción para cerrar sesión
-    if st.button("Cerrar sesión", key="logout_btn"):
+    if col1.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
 
