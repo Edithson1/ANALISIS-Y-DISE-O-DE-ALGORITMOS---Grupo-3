@@ -2,9 +2,6 @@ import streamlit as st
 import os
 
 def main():
-    # Mostrar el contenido del archivo de usuarios
-    show_user_records()
-
     menu = ["Login", "Registro"]
     choice = st.sidebar.selectbox("Menú", menu)
 
@@ -25,8 +22,6 @@ def show_registration():
         if username and password:
             register_user(username, password)
             st.success("¡Registro exitoso! Por favor, inicia sesión.")
-            # Actualizar el contenido del archivo de usuarios
-            show_user_records()
         else:
             st.error("Por favor, completa todos los campos.")
 
@@ -67,22 +62,6 @@ def verify_user(username, password):
             if username == stored_username and password == stored_password:
                 return True
     return False
-
-def show_user_records():
-    # Obtener la ruta al directorio actual del script
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-
-    # Construir la ruta al archivo de usuarios dentro del directorio del proyecto
-    users_file_path = os.path.join(current_dir, "users.txt")
-
-    st.subheader("Registros de Usuarios")
-    try:
-        with open(users_file_path, "r") as file:
-            lines = file.readlines()
-            for line in lines:
-                st.write(line.strip())
-    except FileNotFoundError:
-        st.write("Aún no hay usuarios registrados.")
 
 if __name__ == "__main__":
     main()
