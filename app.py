@@ -1,14 +1,14 @@
 import streamlit as st
 
 def main():
-    st.title("Registro y Login App")
-
     menu = ["Login", "Registro"]
     choice = st.sidebar.selectbox("Menú", menu)
 
     if choice == "Login":
+        st.title("Login")
         show_login()
     elif choice == "Registro":
+        st.title("Login")
         show_registration()
 
 def show_registration():
@@ -31,7 +31,6 @@ def register_user(username, password):
         file.write(f"{username}:{password}\n")
 
 def show_login():
-    st.subheader("Login")
 
     # Campos de entrada para el nombre de usuario y la contraseña
     username = st.text_input("Nombre de usuario")
