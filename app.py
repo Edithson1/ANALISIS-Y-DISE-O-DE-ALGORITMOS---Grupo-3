@@ -58,7 +58,7 @@ def show_authenticated_content():
 
 
         #Grafo dirigido en NetworkX: Para saber cuál es la línea que generará un curso base
-        cursos = df[~df['Cursos'].str.contains("Asignaturas", case=False)]['Cursos'].tolist()
+        cursos = df[~df['Nombre'].str.contains("Asignaturas", case=False)]['Cursos'].tolist()
         curso_selec = st.selectbox('- Seleccione el curso a visualizar', cursos)
         st.write('Curso seleccionado:', curso_selec.capitalize())
 
