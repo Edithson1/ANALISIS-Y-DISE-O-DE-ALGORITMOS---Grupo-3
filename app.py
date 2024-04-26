@@ -81,7 +81,7 @@ def show_user_account():
     st.write("[Ver perfil](#)")
     if st.button("Cerrar sesión", key="logout_btn"):
         st.success("¡Sesión cerrada correctamente!")
-        st.experimental_rerun()
+        # st.experimental_rerun() # No reiniciamos la aplicación al cerrar sesión
 
     user_name = "NOMBRE DE USUARIO"  # Aquí debes obtener el nombre de usuario actualmente logueado
     st.sidebar.write(f"### Bienvenida {user_name}")
