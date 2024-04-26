@@ -13,7 +13,6 @@ def main():
         show_registration()
 
 def show_registration():
-
     # Campos de entrada para el nombre de usuario y la contraseña
     username = st.text_input("Nombre de usuario")
     password = st.text_input("Contraseña", type="password")
@@ -25,7 +24,6 @@ def show_registration():
             st.success("¡Registro exitoso! Por favor, inicia sesión.")
         else:
             st.error("Por favor, completa todos los campos.")
-
 
 def register_user(username, password):
     # Obtener la ruta al directorio actual del script
@@ -39,7 +37,6 @@ def register_user(username, password):
         file.write(f"{username}:{password}\n")
 
 def show_login():
-
     # Campos de entrada para el nombre de usuario y la contraseña
     username = st.text_input("Nombre de usuario")
     password = st.text_input("Contraseña", type="password")
@@ -52,7 +49,13 @@ def show_login():
             st.error("Nombre de usuario o contraseña incorrectos.")
 
 def verify_user(username, password):
-    with open("users.txt", "r") as file:
+    # Obtener la ruta al directorio actual del script
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construir la ruta al archivo de usuarios dentro del directorio del proyecto
+    users_file_path = os.path.join(current_dir, "users.txt")
+
+    with open(users_file_path, "r") as file:
         lines = file.readlines()
         for line in lines:
             stored_username, stored_password = line.strip().split(":")
