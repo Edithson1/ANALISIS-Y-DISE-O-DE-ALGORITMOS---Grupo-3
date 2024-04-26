@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt 
-
+import GRAFO_CICLOS
 usuarios = {
     72439569: "hulk@bb",
     42326885: "loki%=#",
@@ -18,6 +18,7 @@ def main():
         if st.button("Iniciar sesión"):
             if verify_user(username, password):
                 st.session_state.logged_in = True
+                GRAFO_CICLOS()
             else:
                 st.error("Nombre de usuario o contraseña incorrectos.")
     else:
