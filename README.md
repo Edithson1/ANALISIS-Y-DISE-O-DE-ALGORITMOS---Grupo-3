@@ -1,1 +1,1 @@
-# Bienvenidos al grupo "divide y venceras"
+# ¡Bienvenidos al grupo "divide y vencerás!"
