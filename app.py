@@ -5,14 +5,13 @@ def main():
     choice = st.sidebar.selectbox("Menú", menu)
 
     if choice == "Login":
-        st.title("Login")
+        st.markdown("<h1 style='text-align: center;'>Login</h1>", unsafe_allow_html=True)
         show_login()
     elif choice == "Registro":
-        st.title("Login")
+        st.markdown("<h1 style='text-align: center;'>Registrarse</h1>", unsafe_allow_html=True)
         show_registration()
 
 def show_registration():
-    st.subheader("Registro")
 
     # Campos de entrada para el nombre de usuario y la contraseña
     username = st.text_input("Nombre de usuario")
