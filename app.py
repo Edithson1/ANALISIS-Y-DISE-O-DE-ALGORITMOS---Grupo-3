@@ -83,7 +83,8 @@ def show_user_account():
         st.success("¡Sesión cerrada correctamente!")
         st.experimental_rerun()
 
-    st.sidebar.write("### Bienvenida [NOMBRE DE USUARIO]")
+    user_name = "NOMBRE DE USUARIO"  # Aquí debes obtener el nombre de usuario actualmente logueado
+    st.sidebar.write(f"### Bienvenida {user_name}")
     file_type = st.sidebar.selectbox("Seleccione el tipo de archivo:", ["CSV", "Excel"])
 
     if file_type:
