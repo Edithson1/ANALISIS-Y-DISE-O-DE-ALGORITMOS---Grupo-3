@@ -26,7 +26,7 @@ def main():
         # Display a greeting with the user's name
             st.write(f"Hola, {st.session_state['nombre']}!")
             st.write(f"Ciclo: {st.session_state['ciclo_actual']}")
-            st.write(f"Cursos: {st.session_state['cursos_aprobados']}")
+
 
 
 
