@@ -19,20 +19,17 @@ st.set_page_config(
 file_path = os.path.join(os.path.dirname(__file__), 'bd_alumnos.csv')
 df_alumnos = pd.read_csv(file_path)
 ########################
-#lottielink= load_lottieurl(
-def load_lottie(url:str):
-    r= requests.get(url)
-    if r.status_code != 200:
-        return None
-    return r.json
-
+lottiefile= load_lottiefile('lottiefiles/hola.json')
+def load_lottiefile(filepath: str):
+    with open(filepath, 'r') as f:
+        return json.load(f)
 def main():
     if autenticacion_usuario():
         st.title("Datos del estudiante")
         if "nombre" in st.session_state and "ciclo_actual" in st.session_state and "cursos_aprobados" in st.session_state :
         # Display a greeting with the user's name
             st.write(f"Hola, {st.session_state['nombre']}!")
-            #st.lottie(lottielink, key='hello')
+            st.lottie(lottiefile)
             st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
 
 
