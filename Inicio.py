@@ -19,7 +19,7 @@ st.set_page_config(
 file_path = os.path.join(os.path.dirname(__file__), 'bd_alumnos.csv')
 df_alumnos = pd.read_csv(file_path)
 ########################
-lottiefile= load_lottiefile('lottiefiles/hola.json')
+lottiefile= load_lottiefile('lottiefiles/hello.json')
 def load_lottiefile(filepath: str):
     with open(filepath, 'r') as f:
         return json.load(f)
