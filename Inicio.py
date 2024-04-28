@@ -7,8 +7,10 @@ from login import autenticacion_usuario
 
 ####Configuracion de página#######
 st.set_page_config(
-    page_title="Portal de Matrícula"
-        )
+    page_title="Portal de Matrícula",
+    page_icon="school",
+    initial_sidebar_state="expanded",
+)
 ##################################
 
 # Base de datos de alumno
