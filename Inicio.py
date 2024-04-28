@@ -25,7 +25,7 @@ def main():
         if "nombre" in st.session_state and "ciclo_actual" in st.session_state and "cursos_aprobados" in st.session_state :
         # Display a greeting with the user's name
             st.write(f"Hola, {st.session_state['nombre']}!")
-            st.write(f"Ciclo: {st.session_state['ciclo_actual']}")
+            st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
 
 
 
