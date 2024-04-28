@@ -20,7 +20,6 @@ page_bg_img = """
     }
     </style>
 """
-
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Función que permite arreglar los nombres de los cursos
@@ -49,16 +48,20 @@ def obtenerAcronimo(df, nombresCorregidos):
     palabras_actualizadas = []
     letTem = ''
     for palabra in listaPalabras:
-      if len(palabra) > 4:
-        letra = palabra[0].upper()
-        palabra_actualizada = letra + palabra[1:]
-        letTem += letra
-      else:
-        palabra_actualizada = palabra
-      palabras_actualizadas.append(palabra_actualizada)
+        if len(palabra) > 4:
+            letra = palabra[0].upper()
+            palabra_actualizada = letra + palabra[1:]
+            letTem += letra
+        else:
+            palabra_actualizada = palabra
+        palabras_actualizadas.append(palabra_actualizada)
     nombresCorregidos.append(' '.join(palabras_actualizadas))
     if len(ultimaPal) < 4:
-      letTem += ultimaPal 
+        letTem += ultimaPal 
+    if letTem in listaAcronimos:
+        letTem += letTem[-1]
+        listaAcronimos.append(letTem)
+        continue
     listaAcronimos.append(letTem)
   
   return listaAcronimos
