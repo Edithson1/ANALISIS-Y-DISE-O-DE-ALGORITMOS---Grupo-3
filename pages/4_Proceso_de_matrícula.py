@@ -9,7 +9,7 @@ def draw_graph():
     if 'df' in st.session_state and "ciclo_actual" in st.session_state and "cursos_aprobados" in st.session_state:
         df = st.session_state['df']
         ciclo_actual = int(st.session_state['ciclo_actual'])
-        cursos_aprobados = set(st.session_state['cursos_aprobados'])
+        cursos_aprobados = st.session_state['cursos_aprobados']
 
         df['Ciclo'] = pd.to_numeric(df['Ciclo'], errors='coerce')
         df['Código'] = df['Código'].astype(str).str.strip()
