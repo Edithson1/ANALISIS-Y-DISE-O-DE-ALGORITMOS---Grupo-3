@@ -52,7 +52,6 @@ def draw_graph():
 def main():
     if autenticacion_usuario():
         st.title("Proceso de matrícula")
-        st.subheader("Grafo de los cursos habilitados para el alumno(grafo de Alex)")
         if 'df' not in st.session_state:
             st.error("Primero carga el Plan de Estudios")
         else:
