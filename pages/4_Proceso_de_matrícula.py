@@ -32,7 +32,7 @@ def draw_graph():
         df_mostrados = df[df['Código'].isin(nodos_mostrados)].copy()
         df_mostrados = df_mostrados[['Ciclo', 'Código', 'Nombre']].drop_duplicates().sort_values(by='Ciclo')
         
-        st.write("Courses Displayed in the Graph")
+        st.write("Cursos que se muestran en el grafo generado: ")
         st.dataframe(df_mostrados)
 
         net = Network(height="750px", width="100%", bgcolor="#222222", font_color="white")
