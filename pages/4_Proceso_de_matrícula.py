@@ -57,7 +57,7 @@ def main():
             st.error("Primero carga el Plan de Estudios")
         else:
             if "nombre" in st.session_state and "ciclo_actual" in st.session_state and "cursos_aprobados" in st.session_state:
-                st.write(f"Cursos: {st.session_state['cursos_aprobados']}")
+                st.write(f"Cursos que aprobaste: {st.session_state['cursos_aprobados']}")
                 st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
                 df = st.session_state['df']
                 draw_graph() 
