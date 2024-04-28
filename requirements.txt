@@ -10,3 +10,4 @@ openpyxl
 geopandas
 shapely
 networkx
+pyvis
