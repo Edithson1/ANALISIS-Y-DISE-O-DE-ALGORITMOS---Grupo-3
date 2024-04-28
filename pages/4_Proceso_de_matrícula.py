@@ -59,7 +59,14 @@ def main():
                 st.write(f"Cursos que aprobaste: {st.session_state['cursos_aprobados']}")
                 st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
                 df = st.session_state['df']
-                draw_graph() 
+                draw_graph()
+                st.sidebar.markdown("""
+                ### Leyenda de Colores del Grafo de Matrícula
+                - **Verde**: Cursos que ya has completado y aprobado satisfactoriamente.
+                - **Gris**: Cursos en los que puedes matricularte.
+                - **Azul**: Cursos en los que puedes matricularte, pues cumples con los prerequisitos
+                - Nota: No se mostrarán los cursos los cuales no cumples con el prerequisito.
+                """)
     else:
         st.error("Debes iniciar sesión para ver el contenido.")
 
