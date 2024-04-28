@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import os
 from login import autenticacion_usuario
+import json
+from streamlit_lottie import st_lottie
 
 ######Esta es la pagina principal(MAIN)##########
 
@@ -17,7 +19,12 @@ st.set_page_config(
 file_path = os.path.join(os.path.dirname(__file__), 'bd_alumnos.csv')
 df_alumnos = pd.read_csv(file_path)
 ########################
-
+#lottielink= load_lottieurl(
+def load_lottie(url:str):
+    r= requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json
 
 def main():
     if autenticacion_usuario():
@@ -25,6 +32,7 @@ def main():
         if "nombre" in st.session_state and "ciclo_actual" in st.session_state and "cursos_aprobados" in st.session_state :
         # Display a greeting with the user's name
             st.write(f"Hola, {st.session_state['nombre']}!")
+            #st.lottie(lottielink, key='hello')
             st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
 
 
