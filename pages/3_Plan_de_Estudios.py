@@ -105,8 +105,6 @@ def mostrarGrafo(acronimos,posic):
 def main():
     if autenticacion_usuario():
         st.title("Plan de estudios")
-        st.subheader("Grafo del plan de estudios de la carrera Ing. Informática(Grafo Magno)")
-        # Chequea primero si hay un df activo, si no, te sale un mensaje y no un error
         if 'df' not in st.session_state:
             st.error("Primero carga el Plan de Estudios")
         else:
@@ -119,6 +117,43 @@ def main():
             df['Acrónimo'] = acronimos
             asigCodAcro,asigAcroCod,nombresNivel,cursosNivel,posic,nombresCiclo = generarDatosNodos(df)
             mostrarGrafo(acronimos,posic)
+            
+            posicionNivel = {}
+            for nivel, nodos in cursosNivel.items():
+                y_pos = sum([posic[node][1] for node in nodos]) / len(nodos) 
+                posicionNivel[nivel] = (0.5, y_pos)
+
+            for nivel, posicion in posicionNivel.items():
+                plt.text(posicion[0], posicion[1], nivel, rotation=90, fontsize=20, verticalalignment='center', horizontalalignment='center')
+            nivelPresionado = st.sidebar.selectbox("Selecciona el nivel", nombresCiclo)
+            if nivelPresionado:
+                st.sidebar.markdown(f"**Información sobre el {nivelPresionado}:**")
+                if nivelPresionado in cursosNivel:
+                    cursos = cursosNivel[nivelPresionado]
+                    for curso in cursos:
+                        curso_nombre = {}
+                        tipo_nombre = {}
+                        sede_nombre = {}
+                        modalidad_nombre = {}
+                        cred_nombre = {}
+                        req_nombre = {}
+
+                        for index, row in df.iterrows():
+                            curso_nombre[row['Acrónimo']] = row['Nombre']
+                            tipo_nombre[row['Acrónimo']] = row['Tipo']
+                            sede_nombre[row['Acrónimo']] = row['Sede']
+                            modalidad_nombre[row['Acrónimo']] = row['Modalidad']
+                            cred_nombre[row['Acrónimo']] = row['Créditos']
+                            req_nombre[row['Acrónimo']] = row['Nombre Requisito']
+
+                        st.sidebar.write(f"**{curso}: {curso_nombre[curso]}**")
+                        st.sidebar.write(f"- Tipo: *{tipo_nombre[curso]}*")
+                        st.sidebar.write(f"- Sede: *{sede_nombre[curso]}*")
+                        st.sidebar.write(f"- Modalidad: *{modalidad_nombre[curso]}*")
+                        st.sidebar.write(f"- N° Céditos: *{cred_nombre[curso]}*")
+                        st.sidebar.write(f"- Requisito: *{req_nombre[curso]}*")
+                else:
+                    st.sidebar.write("Información específica no disponible para este ciclo.")
             st.pyplot(plt)
     else:
         st.error("Debes iniciar sesión para ver el contenido.")
