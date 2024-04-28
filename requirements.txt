@@ -11,3 +11,4 @@ geopandas
 shapely
 networkx
 pyvis
+streamlit-lottie
