@@ -17,7 +17,7 @@ def entrada_credencial():
     passwd_input = st.session_state.get("passwd", "").strip()
     lista = list(df_alumnos['userid'].unique())
     # Validate credentials
-    if (user_input in lista) and (passwd_input == df_alumnos.loc[lista.index(user_input), "password"]):
+    if (int(user_input) in lista) and (passwd_input == df_alumnos.loc[lista.index(user_input), "password"]):
         st.session_state["autenticacion"] = True
 
         ####Extraccion de columnas por usuario para luego trabajar con ellas#####
