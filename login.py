@@ -15,7 +15,7 @@ df_alumnos = pd.read_csv(file_path)
 def entrada_credencial():
     user_input = st.session_state.get("user", "").strip()
     passwd_input = st.session_state.get("passwd", "").strip()
-
+    
     # Validate credentials
     if any((df_alumnos['userid'] == user_input) & (df_alumnos['password'] == passwd_input)):
         st.session_state["autenticacion"] = True
