@@ -72,7 +72,8 @@ def main():
                 - **Verde**: Cursos que ya has completado y aprobado satisfactoriamente.
                 - **Gris**: Cursos en los que puedes matricularte.
                 - **Azul**: Cursos en los que puedes matricularte, pues cumples con los prerequisitos
-                - Nota: No se mostrarán los cursos los cuales no cumples con el prerequisito.
+                - **Rojo**: Cursos en los que no te puedes matricular por incumplimiento de requisito.
+                - Nota: La conexión con los nodos rojos representan la ruta crítica.
                 """)
     else:
         st.error("Debes iniciar sesión para ver el contenido.")
