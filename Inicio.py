@@ -3,7 +3,6 @@ import pandas as pd
 import os
 from login import autenticacion_usuario
 import json
-from streamlit_lottie import st_lottie
 
 ######Esta es la pagina principal(MAIN)##########
 
@@ -29,12 +28,7 @@ def main():
 
             st.write(f"Ciclo actual: {st.session_state['ciclo_actual']}")
 
-
-
-
-
-
 if __name__ == "__main__":
     main()
 
-    
+
